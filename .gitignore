@@ -21,3 +21,4 @@ npm-debug.log
 client/vendor
 bower_components
 mongodb
+.datastore
