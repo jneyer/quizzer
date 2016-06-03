@@ -1,0 +1,21 @@
+<div class="main">
+    <h2>Edit question</h2>
+
+    <form novalidate class="question-entry-form">
+        <div>
+            <textarea rows="10" cols="80" ng-model ="viewQuestion"></textarea>
+        </div>
+        <div class="form-group" data-ng-repeat="answer in answers">
+            <input type="text" ng-model="answer.answer" name="" placeholder="Enter an answer" size="80">
+            <input type="checkbox" name="correct" ng-model="answer.correct" value="correct">
+        </div>
+        <div>
+            <button ng-show="true" ng-click="addNewAnswer()">+</button>
+            <button ng-click="update()"/>Save</button>
+            <button ng-show="true" ng-click="showQuestions()">Question list</button>
+        </div>
+        <div>
+            <p>{{sendStatus}}</p>
+        </div>
+    </form>
+</div>

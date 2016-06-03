@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <base href="/">
+</head>
+<body ng-app="quizzer" ng-controller="mainController">
+    <div id="heading">
+        <button ng-click="goHome()">Go home</button>
+        <span>Quiz builder</span>
+    </div>
+    <!-- MAIN CONTENT AND INJECTED VIEWS -->
+    <div id="content">
+        <div ng-view></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-sanitize.min.js"></script>
+
+
+    <script src="js/app.js"></script>
+    <script src="js/common.js"></script>
+
+    <!-- Angular controllers -->
+    <script src="js/mainController.js"></script>
+    <script src="js/testConfigController.js"></script>
+    <script src="js/runController.js"></script>
+    <script src="js/testListController.js"></script>
+    <script src="js/editController.js"></script>
+    <script src="js/viewController.js"></script>
+
+
+</body>
+</html>

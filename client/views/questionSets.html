@@ -1,0 +1,18 @@
+<div class="main">
+    <h2>Available question sets</h2>
+    <form novalidate class="question-set-list">
+        <div class="form-group" data-ng-repeat="test in tests">
+            <input type="label" ng-model="test.name" placeholder="Enter a set name" name="" size="20">
+            <button ng-show="isSaved(test)" ng-click="addQuestions(test)">Add</button>
+            <button ng-show="isSaved(test)" ng-click="editTest(test)">Edit</button>
+            <button ng-show="isSaved(test)" ng-disabled="!(test.questions && test.questions.length > 0)" ng-click="runTest(test)">Run</button>
+            <button ng-show="!isSaved(test)" ng-click="save(test)">Save</button>
+            <button ng-show="isSaved(test)" ng-click="save(test)">Rename</button>
+        </div>
+        <button ng-show="true" ng-click="addSet()">+</button>
+        <div>
+            <p>{{sendStatus}}</p>
+        </div>
+    </form>
+
+</div>

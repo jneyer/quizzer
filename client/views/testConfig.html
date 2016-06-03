@@ -1,0 +1,21 @@
+<div class="main">
+    <h2>{{qset.name}} questions ({{qset.questions.length}})</h2>
+    <form novalidate class="question-entry-form">
+        <div>
+            <button ng-show="true" ng-click="addQuestion()">+</button>
+            <button ng-show="true" ng-click="run()">Run</button>
+        </div>
+        <table>
+            <tr class="form-group" ng-class-odd="'odd'" ng-class-even="'even'" data-ng-repeat="question in questions">
+                <td class="table-index">{{$index +1}}</td>
+                <td><div class="edit-question" ng-bind-html="question.question"></div></td>
+                <td><input type="checkbox" ng-model="boxes[$index].value" ng-click="addToTest(question, boxes[$index].value)"></td>
+            </tr>
+        </table>
+        <button ng-show="true" ng-click="submit()">Submit</button>
+        <div>
+            <p>{{sendStatus}}</p>
+        </div>
+    </form>
+
+</div>

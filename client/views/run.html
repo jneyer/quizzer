@@ -1,0 +1,23 @@
+<div class="main">
+    <h2 class="question-title">({{qset.name}}) Question {{index + 1}}</h2>
+    <form novalidate class="question-form">
+        <div class="run-control">
+            <button ng-disabled="!showPrev()" ng-click="next(-1)">Prev</button>
+            <button ng-disabled="!showNext()" ng-click="next(1)">Next</button>
+        </div>
+
+        <div class="question-text" ng-bind-html="currentQuestion.question"></div>
+        <span class="instructions">Select ({{numChoices}}):</span>
+        <div class="answer-group" ng-class-odd="'odd'" ng-class-even="'even'" data-ng-repeat="response in responses">
+                <input ng-disabled="disableCheck()" class="response-checkbox" type="checkbox" name="correct" ng-model="response.correct" value="correct" ng-click="checkAnswers()">
+                <span class="response-letter">{{getLetter($index)}}.</span>
+                <span ng-class-odd="'odd'" ng-class-even="'even'" class="response-text" ng-bind-html="response.answer"></span>
+        </div>
+        <div>
+            <p>{{sendStatus}}</p>
+            <p ng-class="(!tryAgain ? 'success-message':'failed-message')">{{answerStatus}}</p>
+            <button ng-show="tryAgain" ng-click="refresh()">Try again?</button>
+        </div>
+    </form>
+
+</div>

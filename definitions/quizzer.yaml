@@ -1,0 +1,803 @@
+paths:
+  '/questions/{id}/answers/{fk}':
+    get:
+      tags:
+        - question
+      summary: Find a related item by id for answers.
+      operationId: question.prototype.__findById__answers
+      parameters:
+        - name: fk
+          in: path
+          description: Foreign key for answers
+          required: true
+          type: string
+          format: JSON
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/answer'
+      deprecated: false
+    delete:
+      tags:
+        - question
+      summary: Delete a related item by id for answers.
+      operationId: question.prototype.__destroyById__answers
+      parameters:
+        - name: fk
+          in: path
+          description: Foreign key for answers
+          required: true
+          type: string
+          format: JSON
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '204':
+          description: Request was successful
+      deprecated: false
+    put:
+      tags:
+        - question
+      summary: Update a related item by id for answers.
+      operationId: question.prototype.__updateById__answers
+      parameters:
+        - name: fk
+          in: path
+          description: Foreign key for answers
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/answer'
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/answer'
+      deprecated: false
+  '/questions/{id}/answers':
+    get:
+      tags:
+        - question
+      summary: Queries answers of question.
+      operationId: question.prototype.__get__answers
+      parameters:
+        - name: filter
+          in: query
+          required: false
+          type: string
+          format: JSON
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/answer'
+      deprecated: false
+    post:
+      tags:
+        - question
+      summary: Creates a new instance in answers of this model.
+      operationId: question.prototype.__create__answers
+      parameters:
+        - name: data
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/answer'
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/answer'
+      deprecated: false
+    delete:
+      tags:
+        - question
+      summary: Deletes all answers of this model.
+      operationId: question.prototype.__delete__answers
+      parameters:
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '204':
+          description: Request was successful
+      deprecated: false
+  '/questions/{id}/answers/count':
+    get:
+      tags:
+        - question
+      summary: Counts answers of question.
+      operationId: question.prototype.__count__answers
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              count:
+                type: number
+                format: double
+      deprecated: false
+  /questions:
+    post:
+      tags:
+        - question
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: question.create
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/question'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/question'
+      deprecated: false
+    put:
+      tags:
+        - question
+      summary: >-
+        Update an existing model instance or insert a new one into the data
+        source.
+      operationId: question.upsert
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/question'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/question'
+      deprecated: false
+    get:
+      tags:
+        - question
+      summary: Find all instances of the model matched by filter from the data source.
+      operationId: question.find
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/question'
+      deprecated: false
+  '/questions/{id}/exists':
+    get:
+      tags:
+        - question
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'question.exists__get_questions_{id}_exists'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+  '/questions/{id}':
+    head:
+      tags:
+        - question
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'question.exists__head_questions_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+    get:
+      tags:
+        - question
+      summary: Find a model instance by id from the data source.
+      operationId: question.findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: filter
+          in: query
+          description: Filter defining fields and include
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/question'
+      deprecated: false
+    delete:
+      tags:
+        - question
+      summary: Delete a model instance by id from the data source.
+      operationId: question.deleteById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+    put:
+      tags:
+        - question
+      summary: >-
+        Update attributes for a model instance and persist it into the data
+        source.
+      operationId: question.prototype.updateAttributes
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/question'
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/question'
+      deprecated: false
+  /questions/findOne:
+    get:
+      tags:
+        - question
+      summary: Find first instance of the model matched by filter from the data source.
+      operationId: question.findOne
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/question'
+      deprecated: false
+  /questions/update:
+    post:
+      tags:
+        - question
+      summary: Update instances of the model matched by where from the data source.
+      operationId: question.updateAll
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/question'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: The number of instances updated
+            type: object
+      deprecated: false
+  /questions/count:
+    get:
+      tags:
+        - question
+      summary: Count instances of the model matched by where from the data source.
+      operationId: question.count
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              count:
+                type: number
+                format: double
+      deprecated: false
+  /questions/change-stream:
+    post:
+      tags:
+        - question
+      summary: Create a change stream.
+      operationId: question.createChangeStream__post_questions_change-stream
+      parameters:
+        - name: options
+          in: formData
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: file
+      deprecated: false
+    get:
+      tags:
+        - question
+      summary: Create a change stream.
+      operationId: question.createChangeStream__get_questions_change-stream
+      parameters:
+        - name: options
+          in: query
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: file
+      deprecated: false
+  /tests:
+    post:
+      tags:
+        - test
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: test.create
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/test'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/test'
+      deprecated: false
+    put:
+      tags:
+        - test
+      summary: >-
+        Update an existing model instance or insert a new one into the data
+        source.
+      operationId: test.upsert
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/test'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/test'
+      deprecated: false
+    get:
+      tags:
+        - test
+      summary: Find all instances of the model matched by filter from the data source.
+      operationId: test.find
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/test'
+      deprecated: false
+  '/tests/{id}/exists':
+    get:
+      tags:
+        - test
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'test.exists__get_tests_{id}_exists'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+  '/tests/{id}':
+    head:
+      tags:
+        - test
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'test.exists__head_tests_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+    get:
+      tags:
+        - test
+      summary: Find a model instance by id from the data source.
+      operationId: test.findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: filter
+          in: query
+          description: Filter defining fields and include
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/test'
+      deprecated: false
+    delete:
+      tags:
+        - test
+      summary: Delete a model instance by id from the data source.
+      operationId: test.deleteById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+    put:
+      tags:
+        - test
+      summary: >-
+        Update attributes for a model instance and persist it into the data
+        source.
+      operationId: test.prototype.updateAttributes
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/test'
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/test'
+      deprecated: false
+  /tests/findOne:
+    get:
+      tags:
+        - test
+      summary: Find first instance of the model matched by filter from the data source.
+      operationId: test.findOne
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/test'
+      deprecated: false
+  /tests/update:
+    post:
+      tags:
+        - test
+      summary: Update instances of the model matched by where from the data source.
+      operationId: test.updateAll
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/test'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: The number of instances updated
+            type: object
+      deprecated: false
+  /tests/count:
+    get:
+      tags:
+        - test
+      summary: Count instances of the model matched by where from the data source.
+      operationId: test.count
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              count:
+                type: number
+                format: double
+      deprecated: false
+  /tests/change-stream:
+    post:
+      tags:
+        - test
+      summary: Create a change stream.
+      operationId: test.createChangeStream__post_tests_change-stream
+      parameters:
+        - name: options
+          in: formData
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: file
+      deprecated: false
+    get:
+      tags:
+        - test
+      summary: Create a change stream.
+      operationId: test.createChangeStream__get_tests_change-stream
+      parameters:
+        - name: options
+          in: query
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: file
+      deprecated: false
+definitions:
+  x-any:
+    properties: {}
+  answer:
+    properties:
+      answer:
+        type: string
+      correct:
+        type: boolean
+      id:
+        $ref: '#/definitions/ObjectID'
+      questionId:
+        $ref: '#/definitions/ObjectID'
+    required:
+      - answer
+      - correct
+    additionalProperties: false
+  question:
+    properties:
+      comment:
+        type: string
+      question:
+        type: string
+      id:
+        $ref: '#/definitions/ObjectID'
+    required:
+      - question
+    additionalProperties: false
+  test:
+    properties:
+      name:
+        type: string
+      questions:
+        type: array
+        items:
+          type: string
+      id:
+        $ref: '#/definitions/ObjectID'
+    additionalProperties: false
+  ObjectID:
+    type: string
+    pattern: '^[a-fA-F\d]{24}$'
+swagger: '2.0'
+info:
+  x-ibm-name: quizzer
+  version: 1.0.0
+  title: Quiz Master
+schemes:
+  - https
+host: $(catalog.host)
+basePath: /api
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+  clientSecretHeader:
+    in: header
+    name: X-IBM-Client-Secret
+    type: apiKey
+security:
+  - clientIdHeader: []
+    clientSecretHeader: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  gateway: micro-gateway
+  catalogs:
+    apic-dev:
+      properties:
+        runtime-url: $(TARGET_URL)
+    sb:
+      properties:
+        runtime-url: 'http://localhost:4001'
+  assembly:
+    execute:
+      - invoke:
+          target-url: $(runtime-url)$(request.path)$(request.search)
