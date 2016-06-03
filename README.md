@@ -5,7 +5,7 @@ An example of a node.js, Strongloop and Mongodb API driven Angular client
 To run:
 
 * Install: node.js, npm, and mongodb.
-* Install [Strongloop/API Connect](https://strongloop.com/) `npm install -g apiconnect`.
+* Install [Strongloop/API Connect](https://strongloop.com/) - `npm install -g apiconnect`.
 * Clone this repository - `git clone https://github.com/jneyer/quizzer.git`
 * Go to the checkout directory and run `npm install` to download dependencies.
 * Prepare the mongodb database for persistent storage:
