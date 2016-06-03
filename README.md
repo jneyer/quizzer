@@ -15,4 +15,4 @@ To run:
 * Run `apic start` - to start the server.
 * Run `apic edit` - to launch the API editor.
 
-The web client should be running on [http://localhost:4001/#/]()
+The web client should be running on [http://localhost:4001/#/](http://localhost:4001/#/)
