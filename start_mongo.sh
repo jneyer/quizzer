@@ -1,1 +1,1 @@
-mongod --dbpath $PWD/mongodb/
+mongod --dbpath $PWD/mongodb/ $@
