@@ -51,12 +51,12 @@ var quizzer = angular.module("quizzer", ['ngRoute', 'ngSanitize'])
     q.questions = [];
 
     function set (qset) {
-        q = qset;
+        q.name = qset.name;
+        q.id = qset.id;
+        q.questions = qset.questions;
         if (qset.questions == null) {
             qset.questions = [];
         }
-        // don't carry around the hashKey
-        q.$$hashKey = null;
     }
     function get() {
         return q;

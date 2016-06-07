@@ -1,4 +1,4 @@
-var debug = true;
+var debug = false;
 
 function addBreaks(text) {
     if (!text) {

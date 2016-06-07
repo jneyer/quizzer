@@ -1,4 +1,5 @@
-quizzer.controller("editController", function($scope, $window, $http, questionService) {
+quizzer.controller("editController", function($scope, $window, $http, questionService, questionSet) {
+    $scope.qset = {};
     $scope.question = {}
     $scope.viewQuestion = "";
     $scope.answers = [{id: 'answer1'}];
@@ -18,6 +19,7 @@ quizzer.controller("editController", function($scope, $window, $http, questionSe
 
         var showSuccess = function (response) {
             $scope.sendStatus = "Success: " + response.status;
+            questionSet.set($scope.qset);
             $window.location.href = '/#/view';
         };
 
@@ -25,9 +27,21 @@ quizzer.controller("editController", function($scope, $window, $http, questionSe
             $scope.sendStatus = "Error posting answers: " + response.status + "\n" +  response.responseText;
         };
 
-        var continueProcessing = function(response) {
-            if (debug) console.log("continueProcessing");
-            sendHttp("POST", updateURL, request, showSuccess, updateError, $http);
+        var updateQuestionSet =function (response) {
+            if (debug) console.log("updateQuestionSet");
+            if ($scope.qset.name != "All") {
+                var qi = $scope.qset.questions.indexOf($scope.question.id);
+                if (qi == -1) {
+                    $scope.qset.questions.push($scope.question.id);
+                    var updateURL = "http://localhost:4001/api/tests"
+                    sendHttp("PUT", updateURL, $scope.qset, showSuccess, updateError, $http);
+                }
+            }
+        };
+
+        var postAnswers = function(response) {
+            if (debug) console.log("postAnswers");
+            sendHttp("POST", updateURL, request, updateQuestionSet, updateError, $http);
         };
 
         var body = {}
@@ -41,6 +55,7 @@ quizzer.controller("editController", function($scope, $window, $http, questionSe
         }
 
         var updateAnswers = function(response) {
+            $scope.question = response;
             if (debug) console.log("updateAnswers");
             for (i in $scope.answers) {
                 var val = {}
@@ -58,10 +73,10 @@ quizzer.controller("editController", function($scope, $window, $http, questionSe
                 };
 
                 updateURL = "http://localhost:4001/api/questions/" + $scope.question.id + "/answers";
-                sendHttp("DELETE", updateURL, null, continueProcessing, showError, $http);
+                sendHttp("DELETE", updateURL, null, postAnswers, showError, $http);
             }
             else {
-                continueProcessing();
+                postAnswers();
             }
 
         };
@@ -71,6 +86,7 @@ quizzer.controller("editController", function($scope, $window, $http, questionSe
     };
 
     var init = function () {
+        $scope.qset = questionSet.get();
         $scope.question = questionService.get();
         $scope.viewQuestion = reverseBreaks($scope.question.question);
 
