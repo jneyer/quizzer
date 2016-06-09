@@ -54,7 +54,7 @@ quizzer.controller("testConfigController", function($scope, $window, $http, ques
             $scope.sendStatus = "Error setting questions: " + response.status + "\n" +  response.responseText;
         };
 
-        sendHttp("PUT", "http://localhost:4001/api/tests", body, showSuccess, showError, $http);
+        sendHttp("PUT", "/api/tests", body, showSuccess, showError, $http);
     };
 
     var init = function () {
@@ -77,7 +77,7 @@ quizzer.controller("testConfigController", function($scope, $window, $http, ques
             $scope.sendStatus = "Error getting questions from API: " + response.status + "\n" +  response.responseText;
         };
 
-        sendHttp("GET", "http://localhost:4001/api/questions", null, processQuestions, showError, $http);
+        sendHttp("GET", "/api/questions", null, processQuestions, showError, $http);
     }
 
     init();

@@ -30,7 +30,7 @@ quizzer.controller("testListController", function ($scope, $window, $http, quest
     $scope.save = function (test) {
 
         var operation = "POST";
-        var url = "http://localhost:4001/api/tests";
+        var url = "/api/tests";
 
         if ($scope.isSaved(test)) {
             operation = "PUT";
@@ -60,7 +60,7 @@ quizzer.controller("testListController", function ($scope, $window, $http, quest
             $scope.tests = response;
         };
 
-        sendHttp("GET", "http://localhost:4001/api/tests", null, processQuestionList, showError, $http);
+        sendHttp("GET", "/api/tests", null, processQuestionList, showError, $http);
     };
 
     var showError = function(response) {

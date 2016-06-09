@@ -33,8 +33,10 @@ quizzer.controller("editController", function($scope, $window, $http, questionSe
                 var qi = $scope.qset.questions.indexOf($scope.question.id);
                 if (qi == -1) {
                     $scope.qset.questions.push($scope.question.id);
-                    var updateURL = "http://localhost:4001/api/tests"
+                    var updateURL = "/api/tests"
                     sendHttp("PUT", updateURL, $scope.qset, showSuccess, updateError, $http);
+                } else {
+                    showSuccess(response);
                 }
             }
         };
@@ -48,7 +50,7 @@ quizzer.controller("editController", function($scope, $window, $http, questionSe
         body.question = addBreaks($scope.viewQuestion);
 
         var operation = "POST";
-        var updateURL = "http://localhost:4001/api/questions";
+        var updateURL = "/api/questions";
         if ($scope.question.id) {
             operation = "PUT";
             updateURL += "/" + $scope.question.id + "/";
@@ -64,7 +66,7 @@ quizzer.controller("editController", function($scope, $window, $http, questionSe
                 request.push(val);
             }
 
-            updateURL = "http://localhost:4001/api/questions/" + response.id + "/answers";
+            updateURL = "/api/questions/" + response.id + "/answers";
             if ($scope.question.id) {
                 if (debug) console.log("preparing delete");
 
@@ -72,7 +74,7 @@ quizzer.controller("editController", function($scope, $window, $http, questionSe
                     $scope.sendStatus = "Error deleting answers: " + response.status + "\n" +  response.responseText;
                 };
 
-                updateURL = "http://localhost:4001/api/questions/" + $scope.question.id + "/answers";
+                updateURL = "/api/questions/" + $scope.question.id + "/answers";
                 sendHttp("DELETE", updateURL, null, postAnswers, showError, $http);
             }
             else {
@@ -99,7 +101,7 @@ quizzer.controller("editController", function($scope, $window, $http, questionSe
                 }
             };
 
-            sendHttp("GET","http://localhost:4001/api/questions/" + $scope.question.id + "/answers", null, processAnswers, showError, $http);
+            sendHttp("GET","/api/questions/" + $scope.question.id + "/answers", null, processAnswers, showError, $http);
         }
     }
 

@@ -99,7 +99,7 @@ quizzer.controller("runController", function ($scope, $window, $http, questionSe
                 $scope.sendStatus = "Error getting answers from API: " + response.status + "\n" +  response.responseText;
             };
 
-            sendHttp("GET","http://localhost:4001/api/questions/" + $scope.currentQuestion.id + "/answers", null, processAnswers, showError, $http);
+            sendHttp("GET","/api/questions/" + $scope.currentQuestion.id + "/answers", null, processAnswers, showError, $http);
         }
     };
 
@@ -121,7 +121,7 @@ quizzer.controller("runController", function ($scope, $window, $http, questionSe
             $scope.sendStatus = "Error getting questions from API: " + response.status + "\n" +  response.responseText;
         };
 
-        sendHttp("GET", "http://localhost:4001/api/questions" + filter, null, processQuestions, showError, $http);
+        sendHttp("GET", "/api/questions" + filter, null, processQuestions, showError, $http);
 
     };
     init();

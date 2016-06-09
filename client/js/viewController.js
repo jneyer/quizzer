@@ -49,7 +49,7 @@ quizzer.controller("viewController", function($scope, $http, $window, questionSe
             $scope.sendStatus = "Error getting questions from API: " + response.status + "\n" +  response.responseText;
         };
 
-        sendHttp("GET", "http://localhost:4001/api/questions" +  filter, null, processQuestions, showError, $http);
+        sendHttp("GET", "/api/questions" +  filter, null, processQuestions, showError, $http);
 
     };
 
